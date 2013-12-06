@@ -126,7 +126,9 @@ As an aside, TPL is available in .NET 4.0 and beyond. If you are supporting a
 .NET 3.5 environment, TPL was back-ported, which I've included as a Nuget
 reference. However, much of my testing and usage is in .NET 4.0, and so the 3.5
 stuff is only partially verified. Feel free to exercise it. If you need or want
-to contribute, let me know, I'd be happy to let you.
+to contribute, let me know, I'd be happy to let you. If you are not yet running
+with at least .NET 3.5, well, you should catch up with the rest of the .NET
+world.
 
 Most services, although long-running, are also iterative in some way, shape, or
 form. If yours is not, you should consider how to do so, in order for the
