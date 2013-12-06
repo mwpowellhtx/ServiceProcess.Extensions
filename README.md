@@ -29,6 +29,8 @@ to do a couple of things:
 
 * Self-install the Windows Service, usually through a command-line argument.
 
+  * Including install and uninstall options.
+
 * Run the service in a debug (i.e. interactive) mode, apart from the
 [System.ServiceProcess.ServiceController](http://msdn.microsoft.com/en-us/library/system.serviceprocess.servicecontroller.aspx).
 
