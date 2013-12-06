@@ -32,7 +32,7 @@ to do a couple of things:
   * Including install and uninstall options.
 
 * Run the service in a debug (i.e. interactive) mode, apart from the
-[System.ServiceProcess.ServiceController](http://msdn.microsoft.com/en-us/library/system.serviceprocess.servicecontroller.aspx).
+[ServiceController](http://msdn.microsoft.com/en-us/library/system.serviceprocess.servicecontroller.aspx).
 
 Pulling it all together, I wanted to provide sufficient framework elements
 while stopping just short of how you actually want to process your
