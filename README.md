@@ -224,11 +224,11 @@ less how, to process the command-line arguments.
 #### Deciding Which ServiceRunner To Use
 
 Here is a tip: use [Environment.UserInteractive](http://msdn.microsoft.com/en-us/library/system.environment.userinteractive.aspx)
-in order to determine which IServiceRunner to present to your application. It
-does not matter whether this is wired through a Dependency-Injection container,
-or whether you have a simple factory method, or even a property.
+in order to determine which IServiceRunner to present to your application.
 Environment.UserInteractive allows you to decide between the interactive or
-production (i.e. non-interactive) IServiceRunner.
+production (i.e. non-interactive) IServiceRunner. It does not matter whether
+this is wired through a Dependency-Injection container, or whether you have
+a simple factory method, or even a property.
 
 After which point, the actual body of your service application Main method is
 pretty straightforward:
