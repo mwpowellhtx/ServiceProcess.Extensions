@@ -114,7 +114,7 @@ the application up for extensibility.
 ### IServiceWorker
 
 The IServiceWorker interface exposes a Task and a handful of service hooks,
-and represents a context of sorts for a single body of work that you want done
+and represents a context of sorts for a single body-of-work that you want done
 through the Extensions.
 
 ### AdaptableServiceWorker
