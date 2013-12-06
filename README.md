@@ -1,4 +1,4 @@
-# Kingdom.ServiceProcess.Extensions
+# ServiceProcess.Extensions
 
 It's no fault of Microsoft when it provides frameworks that almost-permit
 end-users (that's you and I) to bring up applications, services, etc. However,
