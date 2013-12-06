@@ -48,8 +48,8 @@ stopping just short of actually processing them. What you do with them
 is up to you.
 
   * I like to use [NDesk.Options](http://www.ndesk.org/Options), for
-  instance, but this should not be a dependency for a Service-Extensions
   library, per se. Yes, at an application level; no, at an Extensions level.
+  instance, but this should not be a dependency for a Service-Extensions
 
 #### Run Hooks
 
@@ -64,8 +64,8 @@ completely up to you.
 
 #### Application Plumbing
 
-* Similarly, if your application has any kind of complexity associated with it
-at all, I usually, not always but usually, support the notion of using a good
+* Similarly, if your application has any kind of complexity associated with it,
+I usually, not always but usually, support the notion of using a good
 [Dependency Injection](http://en.wikipedia.org/wiki/Dependency_injection)
 framework.
 
