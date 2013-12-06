@@ -20,8 +20,7 @@ Extensions.
 ## Architectural Design
 
 Designing the Extensions, I considered how best to follow a [S.O.L.I.D.]
-(http://en.wikipedia.org/wiki/SOLID_%28object-oriented_design%29) approach,
-approach.
+(http://en.wikipedia.org/wiki/SOLID_%28object-oriented_design%29) approach.
 
 ### Caveats
 
