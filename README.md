@@ -263,7 +263,7 @@ is your adventure.
 
 ### Sample Code
 
-I have included a sample application demonstrating basic usage. This is
+I have included a sample harness application demonstrating basic usage. This is
 basically showing a do-nothing service with the absolutely necessary plumbing
 involved. I have been successful running several harness workers. I have not
 yet attempted to run a couple different services themselves, but I don't have
