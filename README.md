@@ -13,8 +13,9 @@ Don't get me wrong, that's an excellent starting point, and I don't know if I
 would go as far as to assert whether the out-of-the-box framework lends itself
 to anti-pattern thinking. However, in practice, service application development
 rarely, in my experience, ends with that. You'll inevitably want to invoke
-additional hooks in order to really wire your application together well, and in
-a way that can be more easily maintained. Hence my motivation for Extensions.
+additional hooks in order to really wire your application together well, in a
+manner in which it can be more easily maintained. Hence my motivation for
+Extensions.
 
 ## Architectural Design
 
