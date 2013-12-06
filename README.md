@@ -106,10 +106,10 @@ ServiceBase to host multiple workers; no assumptions whatsoever are made
 regarding whether, much less how, those workers should interact with each
 other.
 
-After careful consideration, I decided to seal the OnXYZ-style event
-notification, while also exposing a set of event handlers. In other words, the
-class is closed for modification, while opening the application up for
-extensibility.
+After careful consideration, I also decided to seal the OnXYZ-style event
+notification, while at the same time exposing a corresponding set of event
+handlers. In other words, the class is closed for modification, while opening
+the application up for extensibility.
 
 ### IServiceWorker
 
