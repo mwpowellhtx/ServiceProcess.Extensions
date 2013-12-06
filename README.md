@@ -88,8 +88,7 @@ Let's have a look at the Extensions framework elements.
 ### IServiceBase
 
 The core interface exposes ServiceBase as an interface. Basically it's a
-direct extraction of the [System.ServiceProcess.ServiceBase]
-(http://msdn.microsoft.com/en-us/library/system.serviceprocess.servicebase.aspx)
+direct extraction of the [ServiceBase](http://msdn.microsoft.com/en-us/library/system.serviceprocess.servicebase.aspx)
 class, but in such a way that permits designing to an interface.
 
 ### AdaptableServiceBase
