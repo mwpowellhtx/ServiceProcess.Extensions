@@ -264,11 +264,12 @@ is your adventure.
 ### Sample Code
 
 I have included a sample harness application demonstrating basic usage. This is
-basically showing a do-nothing service with the absolutely necessary plumbing
-involved. I have been successful running several harness workers. I have not
-yet attempted to run a couple different services themselves, but I don't have
-any reason to doubt these Extensions would not scale at the moment. This would
-be an interesting area to demonstrate in subsequent revisions.
+basically showing a do-nothing service with only the absolute necessary
+plumbing involved. I have been successful running several harness workers.
+I have not yet attempted to run a couple different services themselves, but
+I don't have any reason to doubt these Extensions would not scale at the
+moment. This would be an interesting area to demonstrate in subsequent
+revisions.
 
 ## Disclaimer
 
