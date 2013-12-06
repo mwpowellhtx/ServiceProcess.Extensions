@@ -100,7 +100,7 @@ Anything ServiceBase, whether AdaptableServiceBase or not, is ServiceController
 scaffolding. From a single-responsibility perspective, that's about all it
 should ever do.
 
-The constructor receives an an IServiceWorker enumeration; we will cover
+The constructor receives an IServiceWorker enumeration; we will cover
 IServiceWorker in a moment. As an enumeration, it is possible for a single
 ServiceBase to host multiple workers; no assumptions whatsoever are made
 regarding whether, much less how, those workers should interact with each
