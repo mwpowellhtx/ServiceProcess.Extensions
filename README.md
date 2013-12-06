@@ -49,7 +49,7 @@ is up to you.
 
   * I like to use [NDesk.Options](http://www.ndesk.org/Options), for
   instance, but this should not be a dependency for a Service-Extensions
-  library, per se. Yes, at the application level; no, at the extensions level.
+  library, per se. Yes, at an application level; no, at an Extensions level.
 
 #### Run Hooks
 
