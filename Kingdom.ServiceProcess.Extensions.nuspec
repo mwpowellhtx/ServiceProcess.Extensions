@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>ServiceProcess.Extensions</id>
+    <title>ServiceProcess Extensions for .NET 4.0</title>
+    <version>1.0.0</version>
+    <authors>Kingdom Software</authors>
+    <owners>Kingdom Software</owners>
+<!--    <licenseUrl></licenseUrl> -->
+<!--    <projectUrl></projectUrl> -->
+<!--    <iconUrl></iconUrl> -->
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Provides building blocks for easier Windows Service development.</description>
+    <releaseNotes></releaseNotes>
+    <copyright>Copyright 2013</copyright>
+    <tags>ServiceProcess Windows Services</tags>
+    <frameworkAssemblies>
+      <frameworkAssembly assemblyName="System.ServiceProcess" />
+      <frameworkAssembly assemblyName="System.Configuration.Install" />
+    </frameworkAssemblies>
+  </metadata>
+  <files>
+    <file src="Kingdom.ServiceProcess.Extensions\bin\NET40\Release\Kingdom.ServiceProcess.Extensions.*" target="lib\net40" />
+    <file src="Kingdom.ServiceProcess.Extensions\bin\NET40-client\Release\Kingdom.ServiceProcess.Extensions.*" target="lib\net40-client" />
+	<!-- perhaps, could think about targeting .NET 4.5? "lib\portable-windows8+net45" ? -->
+  </files>
+</package>
