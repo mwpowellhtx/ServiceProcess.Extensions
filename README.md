@@ -36,8 +36,8 @@ to do a couple of things:
 
 Pulling it all together, I wanted to provide sufficient framework elements
 while stopping just short of how you actually want to process your
-command-line-arguments; stopping just short of wiring up your service
-application.
+command-line-arguments; as well as, stopping just short of wiring up your
+service application.
 
 #### Command Line Arguments
 
