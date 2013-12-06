@@ -77,9 +77,9 @@ framework.
 
 The sample code exercising the Extensions, for instance, references neither
 options nor Dependency Injection dependencies. I'm not sure I would organize
-my production code quite like that, however, not without further decoupling
-the services themselves from the console application harness. But that's a
-topic for your discretion beyond the scope of this repository.
+my production code quite like that, however, without further decoupling the
+services themselves from the console application harness. But that's a topic
+for your discretion beyond the scope of this repository.
 
 ## Breaking It Down
 
