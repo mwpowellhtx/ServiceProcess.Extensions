@@ -137,7 +137,7 @@ achieved using the following protected interfaces.
 
 #### CancelToken
 
-We use a CancellationTokenSource property named CancelToken in order to
+We use a **CancellationTokenSource CancelToken { get; }** property in order to
 communicate whether the worker should stop processing.
 
 #### MayContinue
