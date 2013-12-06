@@ -39,9 +39,9 @@ while stopping just short of how you actually want to process your
 command-line-arguments; as well as, stopping just short of wiring up your
 service application.
 
-#### Command Line Arguments
-
 What do I mean by that? I'm glad you asked:
+
+#### Command Line Arguments
 
 * There is sufficient framework to receive your command-line arguments,
 stopping just short of actually processing them. What you do with them
