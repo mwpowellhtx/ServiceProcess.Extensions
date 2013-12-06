@@ -7,13 +7,14 @@ developed using C# .NET fall into that category of "almost working". That is,
 there's the service-event-framework exposed through a
 [ServiceBase](http://msdn.microsoft.com/en-us/library/system.serviceprocess.servicebase.aspx),
 [ServiceInstaller](http://msdn.microsoft.com/en-us/library/system.serviceprocess.serviceinstaller.aspx),
-and so on, but that's about it. Don't get me wrong, that's an excellent
-starting point, and I don't know if I would go as far as to assert whether
-the out-of-the-box framework lends itself to anti-pattern thinking. However,
-in practice, service application development rarely, in my experience, ends
-with that. You'll inevitably want to invoke additional hooks in order to
-really wire your application together well, and in a way that can be more
-easily maintained. Hence my motivation for Extensions.
+and so on, but that's about it.
+
+Don't get me wrong, that's an excellent starting point, and I don't know if I
+would go as far as to assert whether the out-of-the-box framework lends itself
+to anti-pattern thinking. However, in practice, service application development
+rarely, in my experience, ends with that. You'll inevitably want to invoke
+additional hooks in order to really wire your application together well, and in
+a way that can be more easily maintained. Hence my motivation for Extensions.
 
 ## Architectural Design
 
