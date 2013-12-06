@@ -147,8 +147,11 @@ method, in order to determine whether to continue processing.
 
 #### NewTask
 
-Start by deciding what your service Task should do. A TaskSchedule is provided
-for convenience if you should happen to want to configure scheduling at all.
+Start by deciding what your service
+[Task](http://msdn.microsoft.com/en-us/library/system.threading.tasks.task.aspx)
+should do. A [TaskScheduler](http://msdn.microsoft.com/en-us/library/system.threading.tasks.taskscheduler.aspx)
+is provided for convenience if you should happen to want to configure
+scheduling at all.
 
 The following is a self-explanatory, though admittedly over-simplified,
 example. Check the token at least once while not-may-continue (i.e. paused).
