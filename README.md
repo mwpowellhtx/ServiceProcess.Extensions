@@ -242,6 +242,7 @@ protected override Thread NewThread()
     };
     return new Thread(start);
 }
+```
 
 ### IServiceRunner
 
