@@ -3,24 +3,25 @@ using System.ServiceProcess.Definitions;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Kingdom.ServiceProcess.Extensions
+namespace Kingdom.ServiceProcess.Harness
 {
     /// <summary>
-    /// HarnessServiceWorker interface.
+    /// Task parallel HarnessServiceWorker interface.
     /// </summary>
-    internal interface IHarnessServiceWorker : IServiceWorker
+    internal interface ITaskParallelHarnessServiceWorker : ITaskParallelServiceWorker
     {
     }
 
     /// <summary>
-    /// HarnessServiceWorker class.
+    /// Task parallel HarnessServiceWorker class.
     /// </summary>
-    internal class HarnessServiceWorker : AdaptableServiceWorker, IHarnessServiceWorker
+    internal class TaskParallelHarnessServiceWorker : AdaptableTaskParallelServiceWorker,
+        ITaskParallelHarnessServiceWorker
     {
         /// <summary>
         /// Constructor.
         /// </summary>
-        internal HarnessServiceWorker()
+        internal TaskParallelHarnessServiceWorker()
             : base()
         {
         }

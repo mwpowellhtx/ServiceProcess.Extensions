@@ -58,14 +58,24 @@
     <Compile Include="AdaptableServiceInstaller.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="AdaptableTaskParallelServiceBase.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="AdaptableThreadServiceBase.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Runners\InteractiveTaskParallelServiceRunner.cs" />
+    <Compile Include="Runners\InteractiveThreadServiceRunner.cs" />
+    <Compile Include="Workers\AdaptableTaskParallelServiceWorker.cs" />
     <Compile Include="Installers\InstallHelperBase.cs" />
     <Compile Include="Installers\ServiceInstallHelper.cs" />
     <Compile Include="Installers\ServiceUninstallHelper.cs" />
     <Compile Include="Runners\AdaptableServiceRunner.cs" />
-    <Compile Include="AdaptableServiceWorker.cs" />
+    <Compile Include="Workers\AdaptableServiceWorker.cs" />
     <Compile Include="Runners\InteractiveServiceRunner.cs" />
     <Compile Include="Runners\ProductionServiceRunner.cs" />
-    <Compile Include="ServiceWorker.cs" />
+    <Compile Include="Workers\AdaptableThreadServiceWorker.cs" />
+    <Compile Include="Workers\ServiceWorker.cs" />
     <Compile Include="ServiceEvents.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceBase.cs" />

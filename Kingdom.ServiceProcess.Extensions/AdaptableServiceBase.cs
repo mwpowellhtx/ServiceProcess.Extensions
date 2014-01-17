@@ -288,10 +288,16 @@ namespace System.ServiceProcess.Definitions
             RaiseStopping(e);
             //TODO: TBD: Will this work? Need to hook up a callback event?
             _workers.ForEach(x => x.Stop());
-            Task.WaitAll(_workers.Select(x => x.Task).ToArray());
+            WaitForWorkers(_workers.ToArray());
             base.OnStop();
             RaiseStopped(e);
         }
+
+        /// <summary>
+        /// Waits for ServiceWorkers to finish.
+        /// </summary>
+        /// <param name="workers"></param>
+        protected abstract void WaitForWorkers(params IServiceWorker[] workers);
 
         /// <summary>
         /// Pause event handler.

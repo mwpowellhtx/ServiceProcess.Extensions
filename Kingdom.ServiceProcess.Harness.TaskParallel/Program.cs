@@ -2,7 +2,7 @@
 using System.ServiceProcess.Definitions;
 using System.ServiceProcess.Runners;
 
-namespace Kingdom.ServiceProcess.Extensions
+namespace Kingdom.ServiceProcess.Harness
 {
     /// <summary>
     /// Program class.
@@ -17,10 +17,11 @@ namespace Kingdom.ServiceProcess.Extensions
         /// <returns></returns>
         private static IServiceRunner GetServiceRunner()
         {
+            //TODO: This could get tucked away in a composition-root somewhere.
             Func<IServiceRunner> interactive = () => new InteractiveServiceRunner();
 
             Func<IServiceRunner> production = () => new ProductionServiceRunner(
-                new IServiceBase[] {new HarnessService(),});
+                new IServiceBase[] {new TaskParallelHarnessService(),});
 
             return Environment.UserInteractive ? interactive() : production();
         }

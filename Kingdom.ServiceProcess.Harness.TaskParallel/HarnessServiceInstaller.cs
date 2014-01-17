@@ -1,6 +1,6 @@
 ﻿using System.ServiceProcess;
 
-namespace Kingdom.ServiceProcess.Extensions
+namespace Kingdom.ServiceProcess.Harness
 {
     /// <summary>
     /// HarnessServiceInstaller class.

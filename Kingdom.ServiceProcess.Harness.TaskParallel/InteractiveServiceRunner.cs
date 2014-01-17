@@ -2,12 +2,12 @@
 using System.ServiceProcess.Definitions;
 using System.ServiceProcess.Runners;
 
-namespace Kingdom.ServiceProcess.Extensions
+namespace Kingdom.ServiceProcess.Harness
 {
     /// <summary>
     /// InteractiveServiceRunner class.
     /// </summary>
-    internal class InteractiveServiceRunner : InteractiveServiceRunnerBase
+    internal class InteractiveServiceRunner : InteractiveTaskParallelServiceRunner
     {
         /// <summary>
         /// Constructor.
@@ -15,12 +15,15 @@ namespace Kingdom.ServiceProcess.Extensions
         public InteractiveServiceRunner()
             : base(new IServiceWorker[]
             {
-                new HarnessServiceWorker(),
-                new HarnessServiceWorker(),
-                new HarnessServiceWorker(),
+                new TaskParallelHarnessServiceWorker(),
+                new TaskParallelHarnessServiceWorker(),
+                new TaskParallelHarnessServiceWorker(),
             })
         {
         }
+
+        /* TODO: If this were production code needing more extensibility, I might see
+         * about injecting an implementation in for command-line demo apps type thing. */
 
         /// <summary>
         /// Tries to Parse the args.

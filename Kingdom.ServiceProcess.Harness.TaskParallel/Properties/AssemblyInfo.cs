@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Kingdom.ServiceProcess.Extensions")]
+[assembly: AssemblyTitle("Kingdom.ServiceProcess.Harness.TaskParallel")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Kingdom Software")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("93a10cdf-1d05-4768-98d9-c46649b77019")]
+[assembly: Guid("0728ac42-fdca-48d4-8dad-c63b5a3de44f")]
 
 // Version information for an assembly consists of the following four values:
 //

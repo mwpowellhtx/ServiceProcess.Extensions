@@ -4,15 +4,26 @@ using System.Threading.Tasks;
 namespace System.ServiceProcess.Definitions
 {
     /// <summary>
-    /// AdaptableServiceWorker class.
+    /// Task parallel service worker interface.
     /// </summary>
-    public abstract class AdaptableServiceWorker : IServiceWorker
+    public interface ITaskParallelServiceWorker : IServiceWorker
     {
         /// <summary>
-        /// Continue event backing field.
+        /// Gets the ServiceWorker Task.
         /// </summary>
-        private readonly ManualResetEvent _continue;
+        /// <remarks>It gets very complicated if we want to coordinate with Threads for
+        /// .NET 3.5. So we'll just go with 4.0+ for now, and decide whether .NET 3.5 is
+        /// worth the effort later. There is a TPL back-port if we want to maintain some
+        /// degree of consistency with Tasks if needs be, however.</remarks>
+        Task Task { get; }
+    }
 
+    /// <summary>
+    /// Adaptable task parallel service worker class.
+    /// </summary>
+    public abstract class AdaptableTaskParallelServiceWorker : AdaptableServiceWorker,
+        ITaskParallelServiceWorker
+    {
         /// <summary>
         /// Task backing field.
         /// </summary>
@@ -47,13 +58,11 @@ namespace System.ServiceProcess.Definitions
         /// <summary>
         /// Constructor.
         /// </summary>
-        protected AdaptableServiceWorker()
+        protected AdaptableTaskParallelServiceWorker()
+            : base()
         {
             //TODO: Can register a Token delegate that runs when canceled.
             _cancelToken = new CancellationTokenSource();
-            _continue = new ManualResetEvent(true);
-            /* TODO: TBD: Look into do we go with a partitioner to break down
-             * the Sudoku generation process event further? */
         }
 
         /// <summary>
@@ -76,8 +85,10 @@ namespace System.ServiceProcess.Definitions
         /// Starts the Thread running using its starter.
         /// </summary>
         /// <param name="args"></param>
-        public virtual void Start(params string[] args)
+        public override void Start(params string[] args)
         {
+            base.Start(args);
+
             //Start the Task with the Scheduler.
             Task.Start(Scheduler);
         }
@@ -85,46 +96,12 @@ namespace System.ServiceProcess.Definitions
         /// <summary>
         /// Signals the Thread to Stop.
         /// </summary>
-        public virtual void Stop()
+        public override void Stop()
         {
+            base.Stop();
+
             //TODO: throwOnFirstException? Wire up a cancel callback?
             CancelToken.Cancel();
-        }
-
-        /// <summary>
-        /// Signals the Thread to Pause.
-        /// </summary>
-        public virtual void Pause()
-        {
-            lock (_continue) _continue.Reset();
-        }
-
-        /// <summary>
-        /// Signals the Thread to Continue.
-        /// </summary>
-        public virtual void Continue()
-        {
-            lock (_continue) _continue.Set();
-        }
-
-        /// <summary>
-        /// Returns whether the Worker MayContinue.
-        /// </summary>
-        /// <param name="timeoutMilliseconds">Timeout in milliseconds.</param>
-        /// <returns>Whether the Worker MayContinue.</returns>
-        protected virtual bool MayContinue(int timeoutMilliseconds)
-        {
-            return MayContinue(TimeSpan.FromMilliseconds(timeoutMilliseconds));
-        }
-
-        /// <summary>
-        /// Returns whether the Worker MayContinue.
-        /// </summary>
-        /// <param name="timeout">Timeout value.</param>
-        /// <returns>Whether the Worker MayContinue.</returns>
-        protected virtual bool MayContinue(TimeSpan timeout)
-        {
-            lock (_continue) return _continue.WaitOne(timeout);
         }
     }
 }

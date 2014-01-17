@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.ServiceProcess.Definitions;
 using System.ServiceProcess.Helpers;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace System.ServiceProcess.Runners
 {
+    //TODO: Might inject the kind of ServiceWorker interface as a generic argument.
     /// <summary>
     /// InteractiveServiceRunner interface.
     /// </summary>
@@ -26,6 +26,26 @@ namespace System.ServiceProcess.Runners
         /// Workers backing field.
         /// </summary>
         private readonly IEnumerable<IServiceWorker> _workers;
+
+        /// <summary>
+        /// Verifies the ServiceWorkers.
+        /// </summary>
+        /// <typeparam name="TServiceWorker"></typeparam>
+        /// <param name="workers"></param>
+        [Conditional("DEBUG")]
+        protected void VerifyServiceWorkers<TServiceWorker>(IEnumerable<IServiceWorker> workers)
+            where TServiceWorker : IServiceWorker
+        {
+            //Should only run when UserInteractive.
+            if (!Environment.UserInteractive) return;
+
+            /* Since we shouldn't be deploying Debug mode into services.
+             * And since the errors are debug. */
+            Debug.Assert(workers != null, @"Workers should not be null.");
+            Debug.Assert(workers.Any(), @"There should be one or more workers.");
+            Debug.Assert(workers.All(x => x is TServiceWorker),
+                string.Format(@"Workers should all be of type {0}.", typeof(TServiceWorker)));
+        }
 
         /// <summary>
         /// Constructor.
@@ -124,9 +144,14 @@ namespace System.ServiceProcess.Runners
                 action(workers);
             }
 
-            //Wait for all the Workers Tasks to be completed.
-            Task.WaitAll(workers.Select(x => x.Task).ToArray());
+            WaitForWorkers(workers.ToArray());
         }
+
+        /// <summary>
+        /// Waits for the ServiceWorkers.
+        /// </summary>
+        /// <param name="workers"></param>
+        protected abstract void WaitForWorkers(params IServiceWorker[] workers);
 
         //TODO: May want to make this one sealed-override.
         /// <summary>

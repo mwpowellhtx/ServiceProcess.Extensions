@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Kingdom.ServiceProcess.Extensions.Harness")]
+[assembly: AssemblyTitle("Kingdom.ServiceProcess.Harness.Thread")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Kingdom Software")]
 [assembly: AssemblyProduct("Kingdom.ServiceProcess.Extensions")]
-[assembly: AssemblyCopyright("Copyright © 2013")]
+[assembly: AssemblyCopyright("Copyright © 2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("0728ac42-fdca-48d4-8dad-c63b5a3de44f")]
+[assembly: Guid("efec576f-da17-4523-9fc9-bf885f86fdac")]
 
 // Version information for an assembly consists of the following four values:
 //
