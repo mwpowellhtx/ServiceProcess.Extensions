@@ -31,11 +31,11 @@ namespace Kingdom.ServiceProcess.Harness
         /// <param name="args"></param>
         static void Main(string[] args)
         {
-            var serviceRunner = GetServiceRunner();
-
-            if (!serviceRunner.TryParse(args)) return;
-
-            serviceRunner.Run();
+            using (var serviceRunner = GetServiceRunner())
+            {
+                if (!serviceRunner.TryParse(args)) return;
+                serviceRunner.Run();
+            }
         }
     }
 }
