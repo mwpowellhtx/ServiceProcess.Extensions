@@ -208,6 +208,41 @@ Check whether stop has been requested at strategic times during your
 service loop. You are free to call completed when you want, but I
 usually do this in the **finally** clause of a **try/catch** block.
 
+#### NewThread
+
+Start by deciding what your service Thread should do.
+
+The following is a self-explanatory, also over-simplified, example.
+Then do something, or in this case, efficiently wait. Return from
+the action when stop is requested.
+
+```C#
+protected override Thread NewThread()
+{
+    ThreadStart start = () =>
+	{
+	    try
+        {
+            var timeout = TimeSpan.FromMilliseconds(100);
+            while (true)
+            {
+                do
+                {
+                    if (IsStopRequested()) return;
+                } while (!MayContinue(timeout));
+
+                //Basically a do-nothing worker Task for harness purposes.
+                Thread.Sleep(timeout);
+            }
+        }
+        finally
+        {
+            SetCompleted();
+        }
+    };
+    return new Thread(start);
+}
+
 ### IServiceRunner
 
 Remember how I explained that the Extensions framework ought not dictate how to
