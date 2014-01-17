@@ -114,8 +114,8 @@ the application up for extensibility.
 #### Thread and Task Parallel
 
 Thread and Task Parallel are both supported. Whichever one you want to use,
-feel more comfortable with, or is more appropriate to your situation. We will
-break that down in a moment.
+feel more comfortable with, or is more appropriate to your situation, is
+completely up to you. We will break that down in a moment.
 
 ### IServiceWorker
 
