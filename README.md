@@ -202,7 +202,7 @@ mechanism in the form of [ManualResetEvents](http://msdn.microsoft.com/en-us/lib
 Externally, we implement **bool HasCompleted()**. Code is in place which waits
 for the workers to all be completed.
 
-Then coordinate with ServiceBasethrough through a combination of
+Then coordinate with ServiceBase through through a combination of
 **IsStopRequested** and **SetCompleted** calls from your thread code.
 Check whether stop has been requested at strategic times during your
 service loop. You are free to call completed when you want, but I
@@ -326,6 +326,9 @@ public static void Main(string[] args)
     }
 }
 ```
+
+In practice, you will want to pass one or more workers along to your runner
+instance. However, I've left that as an exercise for the reader.
 
 ## Recommended Architecture
 
