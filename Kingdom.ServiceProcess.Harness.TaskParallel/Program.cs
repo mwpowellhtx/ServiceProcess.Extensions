@@ -1,6 +1,5 @@
 ﻿using System;
 using System.ServiceProcess.Definitions;
-using System.ServiceProcess.Runners;
 
 namespace Kingdom.ServiceProcess.Harness
 {

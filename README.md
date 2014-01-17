@@ -111,6 +111,12 @@ notification, while at the same time exposing a corresponding set of event
 handlers. In other words, the class is closed for modification, while opening
 the application up for extensibility.
 
+#### Thread and Task Parallel
+
+Thread and Task Parallel are both supported. Whichever one you want to use,
+feel more comfortable with, or is more appropriate to your situation. We will
+break that down in a moment.
+
 ### IServiceWorker
 
 The IServiceWorker interface exposes a Task and a handful of service hooks,
@@ -122,6 +128,21 @@ through the Extensions.
 AdaptableServiceWorker fleshes out the IServiceWorker a bit. These Extensions
 do depend upon the Microsoft [Task Parallel Library](http://msdn.microsoft.com/en-us/library/dd460717.aspx) (TPL).
 
+In simple terms, AdaptableServiceWorker fleshes out the bridge between
+ServiceBase API and the ServiceWorkers themselves. It does so in a manner
+agnostic of either Thread or Task Parallel.
+
+#### MayContinue
+
+We also use a ManualResetEvent, exposed through a **bool MayContinue()**
+method, in order to determine whether to continue processing.
+
+### AdaptableTaskParallelServiceWorker
+
+Task Parallel is adapted into the ServiceProcess.Extensions. As analogy
+runs, tasks are good when you want to make a sandwich, type thing. For
+simple, one-off, shorter-lived, request-fulfillment type thing.
+
 As an aside, TPL is available in .NET 4.0 and beyond. If you are supporting a
 .NET 3.5 environment, TPL was back-ported, which I've included as a Nuget
 reference. However, much of my testing and usage is in .NET 4.0, and so the 3.5
@@ -130,20 +151,10 @@ to contribute, let me know, I'd be happy to let you. If you are not yet running
 with at least .NET 3.5, well, you should catch up with the rest of the .NET
 world.
 
-Most services, although long-running, are also iterative in some way, shape, or
-form. If yours is not, you should consider how to do so, in order for the
-service to remain responsive to ServiceController events. Responsiveness is
-achieved using the following protected interfaces.
-
 #### CancelToken
 
 We use a **CancellationTokenSource CancelToken { get; }** property in order to
 communicate whether the worker should stop processing.
-
-#### MayContinue
-
-We also use a ManualResetEvent, exposed through a **bool MayContinue()**
-method, in order to determine whether to continue processing.
 
 #### NewTask
 
@@ -169,17 +180,33 @@ protected override Task NewTask(TaskScheduler scheduler)
            {
                if (CancelToken.IsCancellationRequested) return;
            } while (!MayContinue(TimeSpan.FromMilliseconds(100)));
-
            Thread.Sleep(TimeSpan.FromMilliseconds(100));
         }
     };
-
     return new Task(start, CancelToken.Token);
 }
 ```
 
 If your Task needs to work with parameters or anything of this nature, TPL
 allows that since Task is the base class.
+
+### AdaptableThreadServiceWorker
+
+Thread is adapted into the ServiceProcess.Extensions. Threads are analogous
+to hiring a chef to run your kitchen, type thing.
+
+Thread workers need to be able to signal, or report, when they have completed.
+Internally this is handled by the
+[EventWaitHandle](http://msdn.microsoft.com/en-us/library/system.threading.eventwaithandle.aspx)
+mechanism in the form of [ManualResetEvents](http://msdn.microsoft.com/en-us/library/system.threading.manualresetevent.aspx).
+Externally, we implement **bool HasCompleted()**. Code is in place which waits
+for the workers to all be completed.
+
+Then coordinate with ServiceBasethrough through a combination of
+**IsStopRequested** and **SetCompleted** calls from your thread code.
+Check whether stop has been requested at strategic times during your
+service loop. You are free to call completed when you want, but I
+usually do this in the **finally** clause of a **try/catch** block.
 
 ### IServiceRunner
 
@@ -203,6 +230,10 @@ further if you so desire, i.e. you want to process arguments, or things of
 this nature. However, it pretty well contains the code that receives the
 IServiceBase instances and runs them.
 
+ProductionServiceRunner is also Thread and Task agnostic. These concerns are
+pretty well handled by AdaptableServiceBase derived classes. Interactive runners,
+on the other hand, do concern themselves with Thread and Task issues.
+
 #### InteractiveServiceRunnerBase
 
 InteractiveServiceRunnerBase is mostly self-contained, but does nothing to
@@ -220,6 +251,15 @@ but the framework does not dictate how they should be implemented.
 
 Finally, TryParse comes first, but again, you are free to decide whether, much
 less how, to process the command-line arguments.
+
+##### InteractiveThreadServiceRunner and InteractiveTaskParallelServiceRunner
+
+Thread and Task Parallel interactive ServiceRunners handle their Thread and Task
+concerns, respectively. Basically, they verify that the workers are all Thread or Task
+oriented, and also wait for the workers to be complete in a Thread or Task specific
+manner.
+
+That's about all. The rest is pretty well boiler plate InteractiveServiceRunnerBase.
 
 #### Deciding Which ServiceRunner To Use
 

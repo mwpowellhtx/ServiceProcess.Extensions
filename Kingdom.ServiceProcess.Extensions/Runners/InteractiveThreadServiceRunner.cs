@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.ServiceProcess.Definitions;
 
-namespace System.ServiceProcess.Runners
+namespace System.ServiceProcess.Definitions
 {
     /// <summary>
     /// InteractiveThreadServiceRunner class.
@@ -16,7 +15,7 @@ namespace System.ServiceProcess.Runners
         protected InteractiveThreadServiceRunner(IEnumerable<IServiceWorker> workers)
             : base(workers)
         {
-            VerifyServiceWorkers<IThreadServiceWorker>(workers);
+            workers.VerifyServiceWorkers<IThreadServiceWorker>();
         }
 
         /// <summary>

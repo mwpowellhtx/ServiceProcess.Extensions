@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.ServiceProcess.Definitions;
 using System.Threading.Tasks;
 
-namespace System.ServiceProcess.Runners
+namespace System.ServiceProcess.Definitions
 {
     /// <summary>
     /// Interactive task parallel service worker.
@@ -17,7 +16,7 @@ namespace System.ServiceProcess.Runners
         protected InteractiveTaskParallelServiceRunner(IEnumerable<IServiceWorker> workers)
             : base(workers)
         {
-            VerifyServiceWorkers<ITaskParallelServiceWorker>(workers);
+            workers.VerifyServiceWorkers<ITaskParallelServiceWorker>();
         }
 
         /// <summary>

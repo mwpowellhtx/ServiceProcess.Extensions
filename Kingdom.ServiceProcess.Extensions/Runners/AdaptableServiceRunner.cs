@@ -1,4 +1,4 @@
-﻿namespace System.ServiceProcess.Runners
+﻿namespace System.ServiceProcess.Definitions
 {
     /* TODO: It would be better to perhaps separate interfaces from implementations,
      * especially since that would make wiring up DI easier I think. */

@@ -16,6 +16,7 @@ namespace System.ServiceProcess.Definitions
         protected AdaptableTaskParallelServiceBase(IEnumerable<IServiceWorker> workers)
             : base(workers)
         {
+            workers.VerifyServiceWorkers<ITaskParallelServiceWorker>();
         }
 
         /// <summary>
