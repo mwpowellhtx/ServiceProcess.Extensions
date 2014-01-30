@@ -59,11 +59,25 @@ namespace System.ServiceProcess.Definitions
         /// <summary>
         /// Returns whether the Worker MayContinue.
         /// </summary>
-        /// <param name="timeoutMilliseconds">Timeout in milliseconds.</param>
+        /// <param name="timeout">Timeout value in milliseconds.</param>
         /// <returns>Whether the Worker MayContinue.</returns>
-        protected virtual bool MayContinue(int timeoutMilliseconds)
+        protected virtual bool MayContinue(double timeout)
         {
-            return MayContinue(TimeSpan.FromMilliseconds(timeoutMilliseconds));
+            return MayContinue(timeout, null);
+        }
+
+        /// <summary>
+        /// Returns whether the Worker MayContinue.
+        /// </summary>
+        /// <param name="timeout">Timeout value.</param>
+        /// <param name="from">Delegate function converting timeout to <seealso cref="TimeSpan"/>.
+        /// Default is <seealso cref="TimeSpan.FromMilliseconds"/>.</param>
+        /// <returns>Whether the Worker MayContinue.</returns>
+        protected virtual bool MayContinue(double timeout, Func<double, TimeSpan> from)
+        {
+            //This is more portable across targets than parameter defaults.
+            from = from ?? TimeSpan.FromMilliseconds;
+            return MayContinue(from(timeout));
         }
 
         /// <summary>
@@ -73,6 +87,7 @@ namespace System.ServiceProcess.Definitions
         /// <returns>Whether the Worker MayContinue.</returns>
         protected virtual bool MayContinue(TimeSpan timeout)
         {
+            //TODO: TBD: Whether to rename this to a more aptly-named TryMayContinue.
             lock (_continue) return _continue.WaitOne(timeout);
         }
     }
