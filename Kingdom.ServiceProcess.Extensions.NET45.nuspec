@@ -3,7 +3,7 @@
   <metadata>
     <id>ServiceProcess.Extensions.NET45</id>
     <title>ServiceProcess Extensions for .NET 4.5</title>
-    <version>1.2.0</version>
+    <version>1.2.1</version>
     <authors>Kingdom Software</authors>
     <owners>Kingdom Software</owners>
 <!--    <licenseUrl></licenseUrl> -->
@@ -14,11 +14,6 @@
     <releaseNotes>Derived backport including necessary Task support.</releaseNotes>
     <copyright>Copyright 2013</copyright>
     <tags>ServiceProcess Windows Services</tags>
-    <dependencies>
-      <group targetFramework="net45">
-        <dependency id="TaskParallelLibrary" version="1.0" />
-      </group>
-    </dependencies>
     <frameworkAssemblies>
       <frameworkAssembly assemblyName="System.ServiceProcess" />
       <frameworkAssembly assemblyName="System.Configuration.Install" />
