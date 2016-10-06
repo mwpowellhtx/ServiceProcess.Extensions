@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.40629.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kingdom.ServiceProcess.Extensions", "Kingdom.ServiceProcess.Extensions\Kingdom.ServiceProcess.Extensions.csproj", "{0951A736-E869-4113-B7AB-3C9E4998392C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{E03101A9-B8AF-4B1D-A20C-A7574533C4BB}"
@@ -19,6 +21,13 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kingdom.ServiceProcess.Harness.Thread", "Kingdom.ServiceProcess.Harness.Thread\Kingdom.ServiceProcess.Harness.Thread.csproj", "{F59FE133-6A70-4B86-B1CB-17CB7A80C945}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kingdom.ServiceProcess.Extensions.NET45", "Kingdom.ServiceProcess.Extensions\Kingdom.ServiceProcess.Extensions.NET45.csproj", "{FE4AC756-1030-4C4A-9C4F-B6A6641576A1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Packages", "Packages", "{E330066B-6BBF-47A4-9D28-E23F605A5872}"
+	ProjectSection(SolutionItems) = preProject
+		Kingdom.ServiceProcess.Extensions.NET35.nuspec = Kingdom.ServiceProcess.Extensions.NET35.nuspec
+		Kingdom.ServiceProcess.Extensions.NET45.nuspec = Kingdom.ServiceProcess.Extensions.NET45.nuspec
+		Kingdom.ServiceProcess.Extensions.nuspec = Kingdom.ServiceProcess.Extensions.nuspec
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
