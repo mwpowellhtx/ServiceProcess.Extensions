@@ -1,4 +1,5 @@
-﻿namespace System.ServiceProcess.Definitions
+﻿// ReSharper disable once CheckNamespace
+namespace System.ServiceProcess.Definitions
 {
     /// <summary>
     /// ServiceWorker interface.

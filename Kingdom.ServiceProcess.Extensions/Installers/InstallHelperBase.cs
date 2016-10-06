@@ -2,6 +2,7 @@
 using System.IO;
 using System.Reflection;
 
+// ReSharper disable once CheckNamespace
 namespace System.ServiceProcess.Helpers
 {
     /// <summary>
@@ -13,7 +14,7 @@ namespace System.ServiceProcess.Helpers
         /// <summary>
         /// Instance backing field.
         /// </summary>
-        internal readonly static T Instance = new T();
+        internal static readonly T Instance = new T();
 
         /// <summary>
         /// Constructor.

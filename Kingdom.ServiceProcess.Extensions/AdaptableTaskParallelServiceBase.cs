@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 
+// ReSharper disable once CheckNamespace
 namespace System.ServiceProcess.Definitions
 {
     /// <summary>
@@ -14,8 +15,10 @@ namespace System.ServiceProcess.Definitions
         /// </summary>
         /// <param name="workers"></param>
         protected AdaptableTaskParallelServiceBase(IEnumerable<IServiceWorker> workers)
+            // ReSharper disable once PossibleMultipleEnumeration
             : base(workers)
         {
+            // ReSharper disable once PossibleMultipleEnumeration
             workers.VerifyServiceWorkers<ITaskParallelServiceWorker>();
         }
 

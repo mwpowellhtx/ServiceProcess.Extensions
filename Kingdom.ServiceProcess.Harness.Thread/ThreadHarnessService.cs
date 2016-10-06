@@ -15,7 +15,7 @@ namespace Kingdom.ServiceProcess.Harness
             {
                 new ThreadHarnessServiceWorker(),
                 new ThreadHarnessServiceWorker(),
-                new ThreadHarnessServiceWorker(),
+                new ThreadHarnessServiceWorker()
             })
         {
         }

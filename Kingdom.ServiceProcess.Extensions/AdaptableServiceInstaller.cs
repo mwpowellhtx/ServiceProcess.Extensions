@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.Configuration.Install;
-using System.Linq;
 using System.ServiceProcess;
 
+// ReSharper disable once CheckNamespace
 namespace Kingdom.ServiceProcess
 {
     //TODO: TBD: Whether to go ahead and attach the RunInstaller(true) to the base-class.

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
+// ReSharper disable once CheckNamespace
 namespace System.ServiceProcess.Definitions
 {
     /// <summary>
@@ -57,6 +58,7 @@ namespace System.ServiceProcess.Definitions
         /// </summary>
         public override void Run()
         {
+            // ReSharper disable once CoVariantArrayConversion
             ServiceBase.Run(Services.ToArray());
         }
 

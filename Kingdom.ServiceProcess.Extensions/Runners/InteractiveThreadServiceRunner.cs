@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
+// ReSharper disable once CheckNamespace
 namespace System.ServiceProcess.Definitions
 {
     /// <summary>
@@ -13,8 +14,10 @@ namespace System.ServiceProcess.Definitions
         /// </summary>
         /// <param name="workers"></param>
         protected InteractiveThreadServiceRunner(IEnumerable<IServiceWorker> workers)
+            // ReSharper disable once PossibleMultipleEnumeration
             : base(workers)
         {
+            // ReSharper disable once PossibleMultipleEnumeration
             workers.VerifyServiceWorkers<IThreadServiceWorker>();
         }
 

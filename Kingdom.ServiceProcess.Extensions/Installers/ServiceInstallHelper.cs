@@ -1,4 +1,5 @@
-﻿namespace System.ServiceProcess.Helpers
+﻿// ReSharper disable once CheckNamespace
+namespace System.ServiceProcess.Helpers
 {
     /// <summary>
     /// ServiceInstallHelper interface.

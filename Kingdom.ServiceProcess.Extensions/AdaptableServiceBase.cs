@@ -2,8 +2,8 @@
 using System.Diagnostics;
 using System.Linq;
 using System.Runtime.InteropServices;
-using System.Threading.Tasks;
 
+// ReSharper disable once CheckNamespace
 namespace System.ServiceProcess.Definitions
 {
     /// <summary>
@@ -26,7 +26,7 @@ namespace System.ServiceProcess.Definitions
         /// so feel free to add Constructor-Injected references.
         /// </summary>
         /// <param name="workers"></param>
-        internal protected AdaptableServiceBase(IEnumerable<IServiceWorker> workers)
+        protected internal AdaptableServiceBase(IEnumerable<IServiceWorker> workers)
             : base()
         {
             /* Internal-protected: meaning we may activate a new instance from within
@@ -36,7 +36,7 @@ namespace System.ServiceProcess.Definitions
             Debug.Assert(workers != null, "Workers are required!");
             Debug.Assert(workers.Any(), "Workers are required!");
 
-            //ToListify it so we can work with it as a list.
+            // ReSharper disable once PossibleMultipleEnumeration
             _workers = workers.ToList();
         }
 
