@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System.Collections.Generic;
+using System.Threading;
 
 // ReSharper disable once CheckNamespace
 namespace System.ServiceProcess.Definitions
@@ -9,9 +10,9 @@ namespace System.ServiceProcess.Definitions
     public interface IThreadServiceWorker : IServiceWorker
     {
         /// <summary>
-        /// Gets the worker Thread.
+        /// Gets the Worker Threads.
         /// </summary>
-        Thread Thread { get; }
+        IEnumerable<Thread> Threads { get; }
 
         /// <summary>
         /// Returns whether the ServiceWorker HasCompleted.
@@ -26,18 +27,15 @@ namespace System.ServiceProcess.Definitions
     public abstract class AdaptableThreadServiceWorker : AdaptableServiceWorker,
         IThreadServiceWorker
     {
-        /// <summary>
-        /// Thread backing field.
-        /// </summary>
-        private Thread _thread;
+        private readonly Lazy<IEnumerable<Thread>> _lazyThreads;
 
         /// <summary>
         /// Gets the Thread.
         /// </summary>
         /// <remarks>Derived classes must provide their own Worker Thread.</remarks>
-        public Thread Thread
+        public IEnumerable<Thread> Threads
         {
-            get { return _thread ?? (_thread = NewThread()); }
+            get { return _lazyThreads.Value; }
         }
 
         /// <summary>
@@ -60,20 +58,25 @@ namespace System.ServiceProcess.Definitions
         /// </summary>
         /// <param name="startHandler">Default handler starts Thread with no parameters.</param>
         protected AdaptableThreadServiceWorker(Action<IThreadServiceWorker> startHandler = null)
-            : base()
         {
-            _startHandler = startHandler ?? (x => x.Thread.Start());
+            _startHandler = startHandler ?? (x =>
+            {
+                foreach (var thread in x.Threads)
+                    thread.Start();
+            });
+
             _stop = new ManualResetEvent(false);
             _completed = new ManualResetEvent(false);
+            _lazyThreads = new Lazy<IEnumerable<Thread>>(GetThreads);
         }
 
         /// <summary>
-        /// Returns a new Thread.
+        /// Returns a range of Threads for the Worker.
         /// </summary>
         /// <returns></returns>
         /// <remarks>Could be parameterized or not,
         ///  depending what the application requires.</remarks>
-        protected abstract Thread NewThread();
+        protected abstract IEnumerable<Thread> GetThreads();
 
         /// <summary>
         /// Starts the Thread running using its starter.

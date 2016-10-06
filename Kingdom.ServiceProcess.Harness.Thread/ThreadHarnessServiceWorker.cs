@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ServiceProcess.Definitions;
+using System.Threading;
 
 namespace Kingdom.ServiceProcess.Harness
 {
@@ -16,21 +18,22 @@ namespace Kingdom.ServiceProcess.Harness
     internal class ThreadHarnessServiceWorker : AdaptableThreadServiceWorker,
         IThreadHarnessServiceWorker
     {
+        // ReSharper disable once EmptyConstructor
         /// <summary>
         /// Constructor.
         /// </summary>
         internal ThreadHarnessServiceWorker()
-            : base()
         {
         }
 
         /// <summary>
-        /// Returns a new Thread.
+        /// Returns the Worker Threads.
         /// </summary>
         /// <returns></returns>
-        protected override System.Threading.Thread NewThread()
+        protected override IEnumerable<Thread> GetThreads()
         {
-            System.Threading.ThreadStart start = () =>
+            // ReSharper disable once EmptyGeneralCatchClause
+            ThreadStart start = () =>
             {
                 try
                 {
@@ -44,7 +47,7 @@ namespace Kingdom.ServiceProcess.Harness
                         } while (!MayContinue(timeout));
 
                         //Basically a do-nothing worker Task for harness purposes.
-                        System.Threading.Thread.Sleep(timeout);
+                        Thread.Sleep(timeout);
                     }
                 }
                 catch (Exception ex)
@@ -56,7 +59,7 @@ namespace Kingdom.ServiceProcess.Harness
                 }
             };
 
-            return new System.Threading.Thread(start);
+            yield return new Thread(start);
         }
     }
 }
