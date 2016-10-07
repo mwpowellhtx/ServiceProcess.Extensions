@@ -27,7 +27,7 @@ namespace System.ServiceProcess.Definitions
     public abstract class AdaptableThreadServiceWorker : AdaptableServiceWorker,
         IThreadServiceWorker
     {
-        private readonly Lazy<IEnumerable<Thread>> _lazyThreads;
+        private Lazy<IEnumerable<Thread>> _lazyThreads;
 
         /// <summary>
         /// Gets the Thread.
@@ -67,7 +67,6 @@ namespace System.ServiceProcess.Definitions
 
             _stop = new ManualResetEvent(false);
             _completed = new ManualResetEvent(false);
-            _lazyThreads = new Lazy<IEnumerable<Thread>>(GetThreads);
         }
 
         /// <summary>
@@ -85,6 +84,8 @@ namespace System.ServiceProcess.Definitions
         public override void Start(params string[] args)
         {
             base.Start(args);
+
+            _lazyThreads = new Lazy<IEnumerable<Thread>>(GetThreads);
 
             _startHandler(this);
         }
@@ -112,7 +113,7 @@ namespace System.ServiceProcess.Definitions
         /// </summary>
         /// <param name="timeout"></param>
         /// <returns></returns>
-        protected bool IsStopRequested(TimeSpan timeout)
+        protected virtual bool IsStopRequested(TimeSpan timeout)
         {
             lock (_stop) return _stop.WaitOne(timeout);
         }
